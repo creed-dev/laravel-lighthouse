@@ -26,6 +26,10 @@ type Query {
     posts(
         name: String @where(operator: "like")
     ): [Post!]! @paginate(defaultCount: 10)
+
+    categories(
+        name: String @where(operator: "like")
+    ): [Category!]! @paginate(defaultCount: 10)
 }
 
 "Account of a person who utilizes this application."
@@ -57,4 +61,11 @@ type Post {
     description: String!
     publisher_id: ID!
     publisher: User!
+    categories: [Category]
+}
+
+type Category {
+    id: ID!
+    name: String!
+    posts: [Post]
 }
